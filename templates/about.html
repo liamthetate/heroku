@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<!-- how code works inside html 
+{% for number in list_of_numbers %}
+    <p>{{number}}</p>
+{% endfor %}
+-->
+
+{{ company[1]["name"] }}
+
+<h2>{{ page_title }}</h2>
+<p>content etc</p>
+
+{% for member in company %}
+
+    <div class="row featurette">
+
+        {% if loop.index % 2 != 0 %}
+
+            <div class="col-md-7">
+                <h3><a href=" /about/{{ member.url }}">{{ loop.index }}.{{ member.name }}</a> </h3> <!--'.url' refers to the json dictionary file -->
+                <p>{{ member.description }}</p>
+            </div>
+            <div class="col-md-5">
+                <img src="{{ member.image_source }}" class="featurette-image image-reponsive">
+            </div>
+
+        {% else %}
+
+            <div class="col-md-5">
+                <img src="{{ member.image_source }}" class="featurette-image image-reponsive">
+            </div>
+            <div class="col-md-7">
+                <h3><a href=" /about/{{ member.url }}">{{ loop.index }}.{{ member.name }}</a> </h3>
+                <p>{{ member.description }}</p>
+            </div>
+
+        {% endif %}
+
+    </div>
+
+    {% if loop.index != loop.length %}
+        <hr class="featurette-divider">
+    {% endif %}
+
+{% endfor %} <!-- stops the loop -->
+
+
+   
+</div>
+
+{% endblock %}
